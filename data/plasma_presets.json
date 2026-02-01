@@ -1,0 +1,34 @@
+{
+  "presets": {
+    "ICP Standard": {
+      "temperature": 7000,
+      "electron_density": 1e15,
+      "description": "Typical ICP-OES conditions"
+    },
+    "ICP High Temperature": {
+      "temperature": 8000,
+      "electron_density": 1e15,
+      "description": "High temperature ICP conditions"
+    },
+    "ICP Low Temperature": {
+      "temperature": 6000,
+      "electron_density": 1e15,
+      "description": "Low temperature ICP conditions"
+    },
+    "Arc Discharge": {
+      "temperature": 6000,
+      "electron_density": 1e16,
+      "description": "Arc discharge plasma"
+    },
+    "Glow Discharge": {
+      "temperature": 3000,
+      "electron_density": 1e12,
+      "description": "Glow discharge plasma"
+    },
+    "Custom": {
+      "temperature": 7000,
+      "electron_density": 1e15,
+      "description": "Custom settings"
+    }
+  }
+}
