@@ -98,6 +98,13 @@ def main():
     # タイトル
     st.title("⚛️ Ionization Rate Simulator")
     st.markdown("**Equilibrium ionization calculation using Saha equation**")
+    
+    # License notice
+    st.info("""
+    📜 **License Notice**: This app is free for personal, educational, and non-commercial research use. 
+    Commercial use requires a separate license. [Learn more](https://github.com/vikasci/ionization-simulator#-license)
+    """)
+    
     st.markdown("---")
     
     # データベース読み込み
@@ -251,6 +258,17 @@ def main():
            - **Temperature Scan**: Temperature dependence
            - **Electron Density Scan**: Electron density dependence
         """)
+    
+    # License information
+    st.markdown("---")
+    st.markdown("""
+    <div style="text-align: center; color: #666; font-size: 12px; padding: 20px;">
+        <p><strong>Ionization Rate Simulator</strong> | Free for non-commercial use</p>
+        <p>Licensed under AGPL-3.0 | Commercial licenses available (see LICENSE file)</p>
+        <p>⭐ <a href="https://github.com/vikasci/ionization-simulator" target="_blank">Star on GitHub</a> | 
+        ☕ <a href="https://ko-fi.com/vikasci" target="_blank">Support Development</a></p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 if __name__ == "__main__":

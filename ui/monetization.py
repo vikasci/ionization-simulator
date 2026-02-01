@@ -10,29 +10,15 @@ import streamlit.components.v1 as components
 def display_kofi_button():
     """
     Ko-fi寄付ボタンを表示
-    
-    TODO: 自分のKo-fiユーザーネームに置き換える
     """
     kofi_html = """
     <div style="text-align: center; padding: 10px;">
-        <a href='https://ko-fi.com/YOUR_USERNAME' target='_blank'>
+        <a href='https://ko-fi.com/vikasci' target='_blank'>
             <img height='36' style='border:0px;height:36px;' 
                  src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' 
                  border='0' alt='Buy Me a Coffee at ko-fi.com' />
         </a>
     </div>
-    
-    <!-- 実際のKo-fiボタン（アカウント作成後に置き換え）
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-      kofiWidgetOverlay.draw('YOUR_USERNAME', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support Us',
-        'floating-chat.donateButton.background-color': '#00b9fe',
-        'floating-chat.donateButton.text-color': '#fff'
-      });
-    </script>
-    -->
     """
     
     components.html(kofi_html, height=60)
@@ -41,12 +27,10 @@ def display_kofi_button():
 def display_buymeacoffee_button():
     """
     Buy Me a Coffee寄付ボタンを表示（代替案）
-    
-    TODO: 自分のユーザーネームに置き換える
     """
     bmc_html = """
     <div style="text-align: center; padding: 10px;">
-        <a href="https://www.buymeacoffee.com/YOUR_USERNAME" target="_blank">
+        <a href="https://www.buymeacoffee.com/vikasci" target="_blank">
             <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
                  alt="Buy Me A Coffee" 
                  style="height: 50px !important;width: 180px !important;">
