@@ -27,9 +27,23 @@ class IonizationDatabase:
     def load_data(self):
         """CSVファイルを読み込む"""
         try:
-            self.df = pd.read_csv(self.csv_path, delimiter='\t')
+            # カンマ区切りで読み込み
+            self.df = pd.read_csv(self.csv_path, delimiter=',')
+            
             # カラム名のクリーニング（空白除去）
             self.df.columns = self.df.columns.str.strip()
+            
+            # Ion Chargeを数値型に変換（エラーは無視）
+            self.df['Ion Charge'] = pd.to_numeric(self.df['Ion Charge'], errors='coerce')
+            
+            # Ionization Energyを数値型に変換
+            self.df['Ionization Energy (b) (eV)'] = pd.to_numeric(
+                self.df['Ionization Energy (b) (eV)'], errors='coerce'
+            )
+            
+            # NaNを含む行を削除
+            self.df = self.df.dropna(subset=['Ion Charge', 'Ionization Energy (b) (eV)'])
+            
             print(f"✓ データ読み込み成功: {len(self.df)} レコード")
         except FileNotFoundError:
             raise FileNotFoundError(f"ファイルが見つかりません: {self.csv_path}")
