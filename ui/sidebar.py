@@ -109,27 +109,36 @@ def render_sidebar(element_list):
     
     plot_type = st.sidebar.radio(
         "Plot Type",
-        ["Bar Chart", "Temperature Scan", "Electron Density Scan"],
-        index=0
+        ["Bar Chart"],
+        index=0,
+        help="Free version: Bar Chart only. Upgrade to Pro for all visualization types."
     )
+    
+    # Pro版の機能を表示（ロック状態）
+    st.sidebar.markdown("### 🔒 Pro Features")
+    st.sidebar.markdown("""
+    <div style="
+        background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0;
+    ">
+        <p style="margin: 0; font-size: 13px; color: #666;">
+        ✨ Temperature Scan<br>
+        ✨ Electron Density Scan<br>
+        ✨ 2D Heat Map<br>
+        ✨ Data Export (CSV/Excel)<br>
+        ✨ All Elements (20 → 118)
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Upgrade button
+    if st.sidebar.button("🚀 Upgrade to Pro - $7/month", use_container_width=True):
+        st.sidebar.info("👉 [Become a GitHub Sponsor](https://github.com/sponsors/vikasci) to get Pro access!")
     
     # Scan parameters
     scan_params = {}
-    if plot_type == "Temperature Scan":
-        col1, col2 = st.sidebar.columns(2)
-        with col1:
-            scan_params['T_min'] = st.number_input("T min (K)", value=3000, step=500)
-        with col2:
-            scan_params['T_max'] = st.number_input("T max (K)", value=15000, step=500)
-        scan_params['T_points'] = st.slider("Points", 20, 200, 100)
-        
-    elif plot_type == "Electron Density Scan":
-        col1, col2 = st.sidebar.columns(2)
-        with col1:
-            scan_params['ne_min'] = st.number_input("log₁₀(ne) min", value=12.0, step=0.5)
-        with col2:
-            scan_params['ne_max'] = st.number_input("log₁₀(ne) max", value=17.0, step=0.5)
-        scan_params['ne_points'] = st.slider("Points", 20, 200, 100)
     
     # Return parameters as a dictionary
     params = {
