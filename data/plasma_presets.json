@@ -1,33 +1,33 @@
 {
   "presets": {
-    "ICP Standard": {
-      "temperature": 7000,
-      "electron_density": 1e15,
-      "description": "Typical ICP-OES conditions"
+    "Interstellar Medium": {
+      "temperature": 15000,
+      "electron_density": 1e6,
+      "description": "Typical interstellar plasma conditions"
     },
-    "ICP High Temperature": {
-      "temperature": 8000,
-      "electron_density": 1e15,
-      "description": "High temperature ICP conditions"
+    "Solar Corona": {
+      "temperature": 2000000,
+      "electron_density": 1e9,
+      "description": "Solar corona plasma"
     },
-    "ICP Low Temperature": {
-      "temperature": 6000,
-      "electron_density": 1e15,
-      "description": "Low temperature ICP conditions"
+    "Planetary Nebula": {
+      "temperature": 10000,
+      "electron_density": 1e3,
+      "description": "Planetary nebula conditions"
     },
-    "Arc Discharge": {
-      "temperature": 6000,
-      "electron_density": 1e16,
-      "description": "Arc discharge plasma"
+    "Supernova Remnant": {
+      "temperature": 50000,
+      "electron_density": 1e4,
+      "description": "Supernova remnant shock plasma"
     },
-    "Glow Discharge": {
-      "temperature": 3000,
-      "electron_density": 1e12,
-      "description": "Glow discharge plasma"
+    "HII Region": {
+      "temperature": 10000,
+      "electron_density": 1e2,
+      "description": "Ionized hydrogen region"
     },
     "Custom": {
-      "temperature": 7000,
-      "electron_density": 1e15,
+      "temperature": 15000,
+      "electron_density": 1e6,
       "description": "Custom settings"
     }
   }

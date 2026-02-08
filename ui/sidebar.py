@@ -15,16 +15,26 @@ def load_presets():
             data = json.load(f)
         return data['presets']
     except:
-        # Default presets
+        # Default presets (宇宙工学向け)
         return {
-            "ICP Standard": {
-                "temperature": 7000,
-                "electron_density": 1e15,
-                "description": "Typical ICP-OES conditions"
+            "Interstellar Medium": {
+                "temperature": 15000,
+                "electron_density": 1e6,
+                "description": "Typical interstellar plasma conditions"
+            },
+            "Solar Corona": {
+                "temperature": 2000000,
+                "electron_density": 1e9,
+                "description": "Solar corona plasma"
+            },
+            "Planetary Nebula": {
+                "temperature": 10000,
+                "electron_density": 1e3,
+                "description": "Planetary nebula conditions"
             },
             "Custom": {
-                "temperature": 7000,
-                "electron_density": 1e15,
+                "temperature": 15000,
+                "electron_density": 1e6,
                 "description": "Custom settings"
             }
         }
@@ -79,24 +89,28 @@ def render_sidebar(element_list):
     default_temp = presets[selected_preset]["temperature"]
     default_ne = presets[selected_preset]["electron_density"]
     
-    # Temperature
+    # Temperature (宇宙工学用に制限)
+    # ICP-OES範囲（6000-10000K）はPro版のみ
     temperature = st.sidebar.number_input(
         "Temperature (K)",
-        min_value=1000,
-        max_value=50000,
-        value=default_temp,
-        step=500,
-        help="Plasma temperature [K]"
+        min_value=10000,  # ICP-OES以上
+        max_value=10000000,  # 超高温プラズマまで
+        value=default_temp if default_temp >= 10000 else 15000,
+        step=5000,
+        help="Plasma temperature [K] - Free version: Space plasmas only (T ≥ 10,000 K)"
     )
     
-    # Electron density (logarithmic scale)
+    st.sidebar.info("🔒 ICP-OES range (6,000-10,000 K) available in Pro version")
+    
+    # Electron density (宇宙工学用に制限、対数スケール)
+    # ICP-OES範囲（10^14-10^16）はPro版のみ
     ne_log = st.sidebar.slider(
         "log₁₀(Electron Density [cm⁻³])",
-        min_value=10.0,
-        max_value=18.0,
-        value=float(f"{default_ne:.1e}".split('e+')[1]) if default_ne >= 1 else 15.0,
+        min_value=0.0,   # 希薄プラズマ
+        max_value=12.0,  # ICP-OES未満
+        value=8.0,
         step=0.5,
-        help="Log of electron density"
+        help="Log of electron density - Free version: Space plasmas only (ne < 10^12)"
     )
     electron_density = 10 ** ne_log
     
@@ -124,11 +138,14 @@ def render_sidebar(element_list):
         margin: 10px 0;
     ">
         <p style="margin: 0; font-size: 13px; color: #666;">
+        ✨ <strong>ICP-OES Range</strong><br>
+        &nbsp;&nbsp;&nbsp;• Temperature: 6,000-10,000 K<br>
+        &nbsp;&nbsp;&nbsp;• Density: 10¹⁴-10¹⁶ cm⁻³<br>
         ✨ Temperature Scan<br>
         ✨ Electron Density Scan<br>
         ✨ 2D Heat Map<br>
         ✨ Data Export (CSV/Excel)<br>
-        ✨ All Elements (20 → 118)
+        ✨ All Elements (6 → 118)
         </p>
     </div>
     """, unsafe_allow_html=True)
